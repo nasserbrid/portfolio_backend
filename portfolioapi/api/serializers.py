@@ -18,7 +18,7 @@ class ProjectSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Project
-        fields = ['id', 'title', 'description', 'skills', 'image', 'image_url']
+        fields = '__all__'
     
     def get_image_url(self, obj):
         if obj.image:
