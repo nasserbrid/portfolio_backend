@@ -14,9 +14,9 @@ from pathlib import Path
 import dj_database_url
 from dotenv import load_dotenv
 import os
-# import cloudinary
-# from cloudinary import CloudinaryImage
-# from cloudinary_storage.storage import MediaCloudinaryStorage
+import cloudinary
+from cloudinary import CloudinaryImage
+from cloudinary_storage.storage import MediaCloudinaryStorage
 load_dotenv()
 
 
