@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-# import dj_database_url
+import dj_database_url
 # import psycopg2
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -90,29 +90,29 @@ WSGI_APPLICATION = 'portfolioapi.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'porfolio',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '3306',
-        'OPTIONS': {
-            'sql_mode': 'STRICT_TRANS_TABLES',
-        },
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'porfolio',
+#         'USER': 'root',
+#         'PASSWORD': '',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#         'OPTIONS': {
+#             'sql_mode': 'STRICT_TRANS_TABLES',
+#         },
+#     }
+# }
 
 #configuration pour déployer sur render.com
-# DATABASE_URL = ""
+DATABASE_URL = "postgresql://portfolio_cx9f_user:PrtRKKM01eU99hU59zGqJwtkHcpdTEo6@dpg-cvpqhthr0fns73860qk0-a.oregon-postgres.render.com/portfolio_cx9f"
 
-# DATABASES = {
-#     'default': dj_database_url.config(
-#         default = DATABASE_URL,
-#         engine = 'django.db.backends.postgresql'
-#     )
-# }
+DATABASES = {
+    'default': dj_database_url.config(
+        default = DATABASE_URL,
+        engine = 'django.db.backends.postgresql'
+    )
+}
 
 
 # Password validation
