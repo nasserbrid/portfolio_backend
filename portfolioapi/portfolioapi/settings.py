@@ -39,8 +39,11 @@ DEBUG = False
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
+if DEBUG == True :
+    ALLOWED_HOSTS = ['*']
+else :
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'portfolio-frontend-x9yr.onrender.com']
 
-ALLOWED_HOSTS = ['*']
 
 
 # Application definition
