@@ -29,15 +29,15 @@ class ProjectSerializer(serializers.ModelSerializer):
         if not value:
             raise serializers.ValidationError("Le titre ne peut pas être vide.")
         return value
-# class ProjectSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Project
-#         fields = '__all__'
+class ProjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Project
+        fields = '__all__'
         
-#     def validate_title(self, value):
-#         if not value:
-#             raise serializers.ValidationError("Le titre ne peut pas être vide.")
-#         return value
+    def validate_title(self, value):
+        if not value:
+            raise serializers.ValidationError("Le titre ne peut pas être vide.")
+        return value
         
 
 class ContactMessageSerializer(serializers.ModelSerializer):

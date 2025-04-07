@@ -16,7 +16,7 @@ class Project(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
     skills = models.CharField(max_length=255)
-    #image_url = models.ImageField(upload_to='images/')
+    # image_url = models.ImageField(upload_to='images/')
     image = CloudinaryField('image', folder='projects')
     
     
