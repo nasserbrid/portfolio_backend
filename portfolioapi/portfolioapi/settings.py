@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -59,6 +60,12 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'portfolioapi.urls'
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+# Pour production, il est recommandé de spécifier les origines autorisées
+# CORS_ALLOWED_ORIGINS = [
+#     "https://portfolio-frontend-x9yr.onrender.com",
+#     # Ajoutez d'autres origines ici si nécessaire
+# ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -152,6 +159,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
