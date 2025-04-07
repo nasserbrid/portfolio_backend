@@ -53,7 +53,7 @@ class ContactCreateView(generics.CreateAPIView):
                     f"Message: {serializer.validated_data['message']}"
                 ),
                 from_email=settings.EMAIL_HOST_USER,
-                recipient_list=['nasserbrid@gmail.com'],  # Remplace par l'email de destination
+                recipient_list=['nasserbrid@gmail.com'],  
             )
         except Exception as e:
             return Response({"error": "Erreur lors de l'envoi de l'email."}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
