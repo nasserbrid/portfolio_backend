@@ -13,22 +13,22 @@ class ServiceSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Le titre ne peut pas être vide.")
         return value
 
-class ProjectSerializer(serializers.ModelSerializer):
-    image_url = serializers.SerializerMethodField()
+# class ProjectSerializer(serializers.ModelSerializer):
+#     image_url = serializers.SerializerMethodField()
     
-    class Meta:
-        model = Project
-        fields = '__all__'
+#     class Meta:
+#         model = Project
+#         fields = '__all__'
     
-    def get_image_url(self, obj):
-        if obj.image:
-            return obj.image.url
-        return None
+#     def get_image_url(self, obj):
+#         if obj.image:
+#             return obj.image.url
+#         return None
         
-    def validate_title(self, value):
-        if not value:
-            raise serializers.ValidationError("Le titre ne peut pas être vide.")
-        return value
+#     def validate_title(self, value):
+#         if not value:
+#             raise serializers.ValidationError("Le titre ne peut pas être vide.")
+#         return value
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
