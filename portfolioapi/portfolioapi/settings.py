@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import dj_database_url
+from dotenv import load_dotenv
+import os
+import cloudinary
+
+load_dotenv()
 # import psycopg2
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -22,7 +27,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-rph#gcn3f3+d!5nw3wt2@v06v&86z^p9#+xc6#zb6%)a79!3$h'
+SECRET_KEY = os.getenv('SECRET_KEY')
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv("CLOUDINARY_CLOUD_NAME"),
+    'API_KEY': os.getenv("CLOUDINARY_API_KEY"),
+    'API_SECRET': os.getenv("CLOUDINARY_API_SECRET")
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -38,6 +52,8 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
