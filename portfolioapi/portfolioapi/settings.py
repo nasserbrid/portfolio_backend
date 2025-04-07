@@ -15,8 +15,10 @@ import dj_database_url
 from dotenv import load_dotenv
 import os
 import cloudinary
-
 load_dotenv()
+
+
+
 # import psycopg2
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
