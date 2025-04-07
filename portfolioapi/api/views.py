@@ -43,7 +43,7 @@ class ContactCreateView(generics.CreateAPIView):
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         
-        # Envoi de l'email
+       
         try:
             send_mail(
                 subject='Nouveau message de contact',
