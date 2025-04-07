@@ -1,5 +1,5 @@
 from django.db import models
-#from cloudinary.models import CloudinaryField
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class Service(models.Model):
@@ -16,8 +16,8 @@ class Project(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
     skills = models.CharField(max_length=255)
-    image_url = models.ImageField(upload_to='images/')
-    #image = CloudinaryField('image', folder='projects')
+    # image_url = models.ImageField(upload_to='images/')
+    image_url = CloudinaryField('image', folder='projects')
     
     
     
