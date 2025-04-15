@@ -6,6 +6,8 @@ from .serializers import ServiceSerializer, ProjectSerializer, ContactMessageSer
 from django.core.mail import send_mail
 from rest_framework.response import Response
 from django.conf import settings
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 
 # Create your views here.
 class ServiceCreateView(generics.CreateAPIView):
@@ -28,9 +30,17 @@ class ProjectListView(generics.ListAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
     
+    @method_decorator(cache_page(60 * 40))
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+    
 class ProjectDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
+    
+    @method_decorator(cache_page(60 * 40))  
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
     
 
 class ContactCreateView(generics.CreateAPIView):
