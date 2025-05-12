@@ -39,13 +39,13 @@ DEBUG = False
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-if DEBUG == True :
-    ALLOWED_HOSTS = ['*']
+# if DEBUG == True :
+#     ALLOWED_HOSTS = ['*']
 
-else :
-    ALLOWED_HOSTS = ['*']
+# else :
+#     ALLOWED_HOSTS = ['*']
 
-
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -116,20 +116,20 @@ WSGI_APPLICATION = 'portfolioapi.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-if DEBUG == True :
-    DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'porfolio',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '3306',
-        'OPTIONS': {
-            'sql_mode': 'STRICT_TRANS_TABLES',
-        },
-    }
-}
+# if DEBUG == True :
+#     DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'porfolio',
+#         'USER': 'root',
+#         'PASSWORD': '',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#         'OPTIONS': {
+#             'sql_mode': 'STRICT_TRANS_TABLES',
+#         },
+#     }
+# }
     
 
 
@@ -139,18 +139,26 @@ if DEBUG == True :
 
 
 #configuration pour déployer sur render.com
-if DEBUG == False :
-    # DATABASE_URL = "postgresql://portfolio_cx9f_user:PrtRKKM01eU99hU59zGqJwtkHcpdTEo6@dpg-cvpqhthr0fns73860qk0-a.oregon-postgres.render.com/portfolio_cx9f"
-    DATABASE_URL = "postgresql://portfolio_bdd_x8hx_user:5iK0qK18dCfSYtRD7mMLDn0el3j8Zi6v@dpg-d0greojuibrs73ftdr70-a.oregon-postgres.render.com/portfolio_bdd_x8hx"
+# if DEBUG == False :
+#     # DATABASE_URL = "postgresql://portfolio_cx9f_user:PrtRKKM01eU99hU59zGqJwtkHcpdTEo6@dpg-cvpqhthr0fns73860qk0-a.oregon-postgres.render.com/portfolio_cx9f"
+#     DATABASE_URL = "postgresql://portfolio_bdd_x8hx_user:5iK0qK18dCfSYtRD7mMLDn0el3j8Zi6v@dpg-d0greojuibrs73ftdr70-a.oregon-postgres.render.com/portfolio_bdd_x8hx"
    
-    DATABASES = {
+#     DATABASES = {
+#     'default': dj_database_url.config(
+#         default = DATABASE_URL,
+#         engine = 'django.db.backends.postgresql'
+#     )
+# }
+    
+DATABASE_URL = "postgresql://portfolio_bdd_x8hx_user:5iK0qK18dCfSYtRD7mMLDn0el3j8Zi6v@dpg-d0greojuibrs73ftdr70-a.oregon-postgres.render.com/portfolio_bdd_x8hx"
+   
+DATABASES = {
     'default': dj_database_url.config(
         default = DATABASE_URL,
         engine = 'django.db.backends.postgresql'
     )
 }
-    
-
+   
 
 
 
@@ -195,10 +203,10 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-if DEBUG == False :
-    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-else :
-    MEDIA_ROOT = BASE_DIR / 'media'
+# if DEBUG == False :
+#     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# else :
+#     MEDIA_ROOT = BASE_DIR / 'media'
 
 
 CLOUDINARY_STORAGE = {
