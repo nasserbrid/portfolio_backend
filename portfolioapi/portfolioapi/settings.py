@@ -150,16 +150,18 @@ WSGI_APPLICATION = 'portfolioapi.wsgi.application'
 #     )
 # }
     
-DATABASE_URL = "postgresql://portfolio_bdd_x8hx_user:5iK0qK18dCfSYtRD7mMLDn0el3j8Zi6v@dpg-d0greojuibrs73ftdr70-a.oregon-postgres.render.com/portfolio_bdd_x8hx"
+#DATABASE_URL = "postgresql://portfolio_bdd_x8hx_user:5iK0qK18dCfSYtRD7mMLDn0el3j8Zi6v@dpg-d0greojuibrs73ftdr70-a.oregon-postgres.render.com/portfolio_bdd_x8hx"
    
 DATABASES = {
     'default': dj_database_url.config(
-        default = DATABASE_URL,
+        default = os.getenv('DATABASE_URL'),
         engine = 'django.db.backends.postgresql'
     )
 }
    
-
+# DATABASES = {
+#     'default': dj_database_url.config(default=DATABASE_URL)
+# }
 
 
 
