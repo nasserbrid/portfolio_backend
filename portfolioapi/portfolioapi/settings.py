@@ -140,8 +140,9 @@ if DEBUG == True :
 
 #configuration pour déployer sur render.com
 if DEBUG == False :
-    DATABASE_URL = "postgresql://portfolio_cx9f_user:PrtRKKM01eU99hU59zGqJwtkHcpdTEo6@dpg-cvpqhthr0fns73860qk0-a.oregon-postgres.render.com/portfolio_cx9f"
-    
+    # DATABASE_URL = "postgresql://portfolio_cx9f_user:PrtRKKM01eU99hU59zGqJwtkHcpdTEo6@dpg-cvpqhthr0fns73860qk0-a.oregon-postgres.render.com/portfolio_cx9f"
+    DATABASE_URL = "postgresql://portfolio_bdd_x8hx_user:5iK0qK18dCfSYtRD7mMLDn0el3j8Zi6v@dpg-d0greojuibrs73ftdr70-a.oregon-postgres.render.com/portfolio_bdd_x8hx"
+   
     DATABASES = {
     'default': dj_database_url.config(
         default = DATABASE_URL,
