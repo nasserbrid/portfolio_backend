@@ -21,7 +21,7 @@ load_dotenv()
 
 
 
-# import psycopg2
+import psycopg2
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,7 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = "django-insecure-rph#gcn3f3+d!5nw3wt2@v06v&86z^p9#+xc6#zb6%)a79!3$h"
 
 DEBUG = False
 
@@ -80,10 +80,10 @@ ROOT_URLCONF = 'portfolioapi.urls'
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-# Pour production, il est recommandé de spécifier les origines autorisées
+
 # CORS_ALLOWED_ORIGINS = [
-#     "https://portfolio-frontend-x9yr.onrender.com",
-#     # Ajoutez d'autres origines ici si nécessaire
+#     "https://portfolio-frontend-x9yr.onrender.com"
+#     
 # ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -115,8 +115,29 @@ WSGI_APPLICATION = 'portfolioapi.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
+# Database configuration
+# DATABASE_URL = "postgresql://portfolio_bdd_x8hx_user:5iK0qK18dCfSYtRD7mMLDn0el3j8Zi6v@dpg-d0greojuibrs73ftdr70-a.oregon-postgres.render.com/portfolio_bdd_x8hx"
+# DATABASES = {
+#     'default': dj_database_url.config(default=DATABASE_URL)
+# }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'portfolio_bdd_x8hx',
+#         'USER': 'portfolio_bdd_x8hx_user',
+#         'PASSWORD': '5iK0qK18dCfSYtRD7mMLDn0el3j8Zi6v',
+#         'HOST': 'dpg-d0greojuibrs73ftdr70-a.oregon-postgres.render.com',
+#         'PORT': '5432',
+#     }
+# }
 
-# if DEBUG == True :
+# DATABASE_URL = os.getenv('DATABASE_URL')
+# if DATABASE_URL:
+#     DATABASES = {
+#         'default': dj_database_url.parse(DATABASE_URL)
+#     }
+# else:
+    
 #     DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
@@ -150,15 +171,27 @@ WSGI_APPLICATION = 'portfolioapi.wsgi.application'
 #     )
 # }
     
-#DATABASE_URL = "postgresql://portfolio_bdd_x8hx_user:5iK0qK18dCfSYtRD7mMLDn0el3j8Zi6v@dpg-d0greojuibrs73ftdr70-a.oregon-postgres.render.com/portfolio_bdd_x8hx"
+# DATABASE_URL = "postgresql://portfolio_bdd_x8hx_user:5iK0qK18dCfSYtRD7mMLDn0el3j8Zi6v@dpg-d0greojuibrs73ftdr70-a.oregon-postgres.render.com/portfolio_bdd_x8hx"
    
-DATABASES = {
-    'default': dj_database_url.config(
-        default = os.getenv('DATABASE_URL'),
-        engine = 'django.db.backends.postgresql'
-    )
-}
-   
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default = os.getenv('DATABASE_URL'),     
+#         engine = 'django.db.backends.postgresql',
+#     )
+# }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': os.getenv("DATABASE_ENGINE"),
+#         'NAME': os.getenv("DATABASE_NAME"),
+#         'USER': os.getenv("DATABASE_USER"),
+#         'PASSWORD': os.getenv("DATABASE_PASSWORD"),
+#         'HOST': os.getenv("DATABASE_HOST"),
+#         'PORT': os.getenv("DATABASE_PORT"),
+#     }
+# }
+
 # DATABASES = {
 #     'default': dj_database_url.config(default=DATABASE_URL)
 # }
@@ -217,7 +250,7 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': os.getenv("CLOUDINARY_API_SECRET")
 }
 
-
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
