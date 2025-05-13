@@ -43,9 +43,9 @@ DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 #     ALLOWED_HOSTS = ['*']
 # else:
 #     ALLOWED_HOSTS = ['portfolio-backend-w2tk.onrender.com']
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(' ') if not DEBUG else []
+# ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(' ') if not DEBUG else []
 
-# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -116,8 +116,7 @@ WSGI_APPLICATION = 'portfolioapi.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 # Database configuration
-# print("Test DATABASE_URL parsing :")
-# print(dj_database_url.config(default='postgresql://portfolio_bdd_x8hx_user:5iK0qK18dCfSYtRD7mMLDn0el3j8Zi6v@dpg-d0greojuibrs73ftdr70-a.oregon-postgres.render.com/portfolio_bdd_x8hx'))
+
 
 # DATABASE_URL = os.getenv('DATABASE_URL')
 
@@ -125,11 +124,32 @@ WSGI_APPLICATION = 'portfolioapi.wsgi.application'
 #     'default': dj_database_url.parse(DATABASE_URL)
 # }
 
-DATABASES = {
-       'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-   }
 
-print("DATABASES:", DATABASES)
+
+PROD_DB = os.environ.get("DATABASE_URL") is not None
+
+if PROD_DB:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'porfolio',
+            'USER': 'root',
+            'PASSWORD': '',
+            'HOST': 'localhost',
+            'PORT': '3306',
+            'OPTIONS': {
+                'sql_mode': 'STRICT_TRANS_TABLES',
+            },
+        }
+    }
+
+
+
+#print("DATABASES:", DATABASES)
 
 
 
@@ -145,20 +165,7 @@ print("DATABASES:", DATABASES)
 
 
     
-#     DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'porfolio',
-#         'USER': 'root',
-#         'PASSWORD': '',
-#         'HOST': 'localhost',
-#         'PORT': '3306',
-#         'OPTIONS': {
-#             'sql_mode': 'STRICT_TRANS_TABLES',
-#         },
-#     }
-# }
-    
+
 
 
 
@@ -178,8 +185,7 @@ print("DATABASES:", DATABASES)
 #     )
 # }
     
-# DATABASE_URL = "postgresql://portfolio_bdd_x8hx_user:5iK0qK18dCfSYtRD7mMLDn0el3j8Zi6v@dpg-d0greojuibrs73ftdr70-a.oregon-postgres.render.com/portfolio_bdd_x8hx"
-   
+
 # DATABASES = {
 #     'default': dj_database_url.config(
 #         default = os.getenv('DATABASE_URL'),     
@@ -268,23 +274,23 @@ CACHES = {
 }
 
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'file': {
-            'level': 'ERROR',
-            'class': 'logging.FileHandler',
-            'filename': BASE_DIR / 'django-error.log',
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['file'],
-            'level': 'ERROR',
-            'propagate': True,
-        },
-    },
-}
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'file': {
+#             'level': 'ERROR',
+#             'class': 'logging.FileHandler',
+#             'filename': BASE_DIR / 'django-error.log',
+#         },
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['file'],
+#             'level': 'ERROR',
+#             'propagate': True,
+#         },
+#     },
+# }
 
 
