@@ -118,7 +118,7 @@ WSGI_APPLICATION = 'portfolioapi.wsgi.application'
 # print("Test DATABASE_URL parsing :")
 # print(dj_database_url.config(default='postgresql://portfolio_bdd_x8hx_user:5iK0qK18dCfSYtRD7mMLDn0el3j8Zi6v@dpg-d0greojuibrs73ftdr70-a.oregon-postgres.render.com/portfolio_bdd_x8hx'))
 
-DATABASE_URL = 'postgresql://portfolio_bdd_x8hx_user:5iK0qK18dCfSYtRD7mMLDn0el3j8Zi6v@dpg-d0greojuibrs73ftdr70-a.oregon-postgres.render.com/portfolio_bdd_x8hx'
+DATABASE_URL = os.getenv('DATABASE_URL')
 
 DATABASES = {
     'default': dj_database_url.parse(DATABASE_URL)
