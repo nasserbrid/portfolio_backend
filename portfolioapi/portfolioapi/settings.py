@@ -33,7 +33,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = False
+DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
+# DEBUG = False
 
 
 
@@ -42,9 +43,9 @@ DEBUG = False
 #     ALLOWED_HOSTS = ['*']
 # else:
 #     ALLOWED_HOSTS = ['portfolio-backend-w2tk.onrender.com']
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(' ') if not DEBUG else []
 
-
-ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -118,11 +119,15 @@ WSGI_APPLICATION = 'portfolioapi.wsgi.application'
 # print("Test DATABASE_URL parsing :")
 # print(dj_database_url.config(default='postgresql://portfolio_bdd_x8hx_user:5iK0qK18dCfSYtRD7mMLDn0el3j8Zi6v@dpg-d0greojuibrs73ftdr70-a.oregon-postgres.render.com/portfolio_bdd_x8hx'))
 
-DATABASE_URL = os.getenv('DATABASE_URL')
+# DATABASE_URL = os.getenv('DATABASE_URL')
+
+# DATABASES = {
+#     'default': dj_database_url.parse(DATABASE_URL)
+# }
 
 DATABASES = {
-    'default': dj_database_url.parse(DATABASE_URL)
-}
+       'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+   }
 
 print("DATABASES:", DATABASES)
 
