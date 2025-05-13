@@ -282,6 +282,4 @@ LOGGING = {
     },
 }
 
-print("⚙️ DATABASE CONFIGURATION DEBUG")
-from pprint import pprint
-pprint(DATABASES)
+
