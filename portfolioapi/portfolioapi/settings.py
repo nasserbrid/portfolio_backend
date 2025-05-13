@@ -31,21 +31,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-rph#gcn3f3+d!5nw3wt2@v06v&86z^p9#+xc6#zb6%)a79!3$h"
+SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = False
+DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
+if DEBUG:
+    ALLOWED_HOSTS = ['*']
+else:
+    ALLOWED_HOSTS = ['portfolio-backend-w2tk.onrender.com']
 
-# if DEBUG == True :
-#     ALLOWED_HOSTS = ['*']
 
-# else :
-#     ALLOWED_HOSTS = ['*']
-
-ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -116,27 +115,30 @@ WSGI_APPLICATION = 'portfolioapi.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 # Database configuration
-# DATABASE_URL = "postgresql://portfolio_bdd_x8hx_user:5iK0qK18dCfSYtRD7mMLDn0el3j8Zi6v@dpg-d0greojuibrs73ftdr70-a.oregon-postgres.render.com/portfolio_bdd_x8hx"
+# print("Test DATABASE_URL parsing :")
+# print(dj_database_url.config(default='postgresql://portfolio_bdd_x8hx_user:5iK0qK18dCfSYtRD7mMLDn0el3j8Zi6v@dpg-d0greojuibrs73ftdr70-a.oregon-postgres.render.com/portfolio_bdd_x8hx'))
+
+DATABASE_URL = 'postgresql://portfolio_bdd_x8hx_user:5iK0qK18dCfSYtRD7mMLDn0el3j8Zi6v@dpg-d0greojuibrs73ftdr70-a.oregon-postgres.render.com/portfolio_bdd_x8hx'
+
+DATABASES = {
+    'default': dj_database_url.parse(DATABASE_URL)
+}
+
+print("DATABASES:", DATABASES)
+
+
+
 # DATABASES = {
-#     'default': dj_database_url.config(default=DATABASE_URL)
-# }
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'portfolio_bdd_x8hx',
-#         'USER': 'portfolio_bdd_x8hx_user',
-#         'PASSWORD': '5iK0qK18dCfSYtRD7mMLDn0el3j8Zi6v',
-#         'HOST': 'dpg-d0greojuibrs73ftdr70-a.oregon-postgres.render.com',
-#         'PORT': '5432',
-#     }
+#     'default': dj_database_url.config(
+#         default=os.getenv('DATABASE_URL'),
+#         conn_max_age=600,
+#         engine='django.db.backends.postgresql',
+#     )
 # }
 
-# DATABASE_URL = os.getenv('DATABASE_URL')
-# if DATABASE_URL:
-#     DATABASES = {
-#         'default': dj_database_url.parse(DATABASE_URL)
-#     }
-# else:
+
+
+
     
 #     DATABASES = {
 #     'default': {
@@ -238,10 +240,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# if DEBUG == False :
-#     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-# else :
-#     MEDIA_ROOT = BASE_DIR / 'media'
+
 
 
 CLOUDINARY_STORAGE = {
@@ -283,3 +282,6 @@ LOGGING = {
     },
 }
 
+print("⚙️ DATABASE CONFIGURATION DEBUG")
+from pprint import pprint
+pprint(DATABASES)

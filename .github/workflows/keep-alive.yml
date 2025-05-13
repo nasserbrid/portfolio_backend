@@ -1,4 +1,4 @@
-name: Garder Render Allumer
+name: Ping sur Render pour garder mon backend allumer et verifier tous les 10 mins
 
 on:
   schedule:
