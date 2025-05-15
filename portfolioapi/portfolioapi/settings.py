@@ -125,8 +125,6 @@ WSGI_APPLICATION = 'portfolioapi.wsgi.application'
 #     'default': dj_database_url.parse(DATABASE_URL)
 # }
 
-
-
 PROD_DB = os.environ.get("DATABASE_URL") is not None
 
 if PROD_DB:
