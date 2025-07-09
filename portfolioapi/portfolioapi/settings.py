@@ -31,11 +31,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+# SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = "django-insecure-rph#gcn3f3+d!5nw3wt2@v06v&86z^p9#+xc6#zb6%)a79!3$h"
 
 # DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
-DEBUG = os.environ.get('DEBUG')
-# DEBUG = False
+# DEBUG = os.environ.get('DEBUG')
+
+DEBUG = False
+
 
 
 
@@ -47,6 +50,8 @@ DEBUG = os.environ.get('DEBUG')
 # ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(' ') if not DEBUG else []
 
 ALLOWED_HOSTS = ['*']
+
+
 
 # Application definition
 
@@ -125,14 +130,28 @@ WSGI_APPLICATION = 'portfolioapi.wsgi.application'
 #     'default': dj_database_url.parse(DATABASE_URL)
 # }
 
-PROD_DB = os.environ.get("DATABASE_URL") is not None
+# PROD_DB = os.environ.get("DATABASE_URL") is not None
 
-if PROD_DB:
-    DATABASES = {
-        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-    }
-else:
-    DATABASES = {
+# if PROD_DB:
+#     DATABASES = {
+#         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+#     }
+# else:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.mysql',
+#             'NAME': 'porfolio',
+#             'USER': 'root',
+#             'PASSWORD': '',
+#             'HOST': 'localhost',
+#             'PORT': '3306',
+#             'OPTIONS': {
+#                 'sql_mode': 'STRICT_TRANS_TABLES',
+#             },
+#         }
+#     }
+
+DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'porfolio',
@@ -146,7 +165,7 @@ else:
         }
     }
 
-
+DATABASES["default"] = dj_database_url.parse("postgresql://portfolio_0y0t_user:nFAEw2eEbYk9cmsoAbA7JPO6dGtC3JkA@dpg-d0hmj9qdbo4c73dukgfg-a.oregon-postgres.render.com/portfolio_0y0t")
 
 #print("DATABASES:", DATABASES)
 
@@ -250,8 +269,11 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-
-
+# if DEBUG == False :
+#     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# else :
+#     MEDIA_ROOT = BASE_DIR / 'media'
+    
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.getenv("CLOUDINARY_CLOUD_NAME"),

@@ -2,7 +2,7 @@ import psycopg2
 import dj_database_url
 
 # URL de la base de données
-DATABASE_URL = "postgresql://portfolio_bdd_x8hx_user:5iK0qK18dCfSYtRD7mMLDn0el3j8Zi6v@dpg-d0greojuibrs73ftdr70-a.oregon-postgres.render.com/portfolio_bdd_x8hx"
+DATABASE_URL = "postgresql://portfolio_0y0t_user:nFAEw2eEbYk9cmsoAbA7JPO6dGtC3JkA@dpg-d0hmj9qdbo4c73dukgfg-a.oregon-postgres.render.com/portfolio_0y0t"
 
 # Test 1: Vérifier que dj-database-url fonctionne
 try:

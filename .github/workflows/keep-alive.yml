@@ -1,15 +1,15 @@
-name: Ping sur Render pour garder mon backend allumer et verifier tous les 10 mins
+# name: Ping sur Render pour garder mon backend allumer et verifier tous les 10 mins
 
-on:
-  schedule:
-    - cron: "*/10 * * * *"
-  workflow_dispatch:
+# on:
+#   schedule:
+#     - cron: "*/10 * * * *"
+#   workflow_dispatch:
 
-jobs:
-  ping-render:
-    runs-on: ubuntu-latest
+# jobs:
+#   ping-render:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Call Render API
-        run: |
-          curl -s -o /dev/null -w "%{http_code}" https://https://portfolio-backend-shln.onrender.com/api/projets
+#     steps:
+#       - name: Call Render API
+#         run: |
+#           curl -s -o /dev/null -w "%{http_code}" https://https://portfolio-backend-shln.onrender.com/api/projets
